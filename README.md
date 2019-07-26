@@ -4,7 +4,7 @@ Created in React.js using react hooks. Completely responsive web app.
 
 ## Web App in action
 
-![] (./src/icons/to-do-list.gif)
+![](./src/icons/to-do-list.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
