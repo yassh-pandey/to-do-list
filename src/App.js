@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import AddItem from "./components/AddItem"
+import DisplayListItems from './components/DisplayListItems';
 
 function App() {
+  
+  const [list, setList] = useState([])
+
+  const addItem = (item)=>{
+      setList([...list, item])
+  }
+  const deleteItem = (key)=>{
+    let newState = list.filter((item)=>{
+      return (item.key !== key)
+    })
+    setTimeout(()=>{
+      setList(newState)
+    },1000)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header></header>
+      <AddItem addItem={addItem}/>
+      <DisplayListItems list={list} deleteItem={deleteItem}/>
     </div>
   );
 }
