@@ -1,22 +1,22 @@
 import React, {useState} from 'react'
 
+const initialState = {
+    "title": "",
+    "description": "",
+};
 function AddItem({addItem}) {
-    const [item, setItem] = useState({
-        "title": undefined,
-        "description": undefined,
-        "key": 0
-    })
+    const [item, setItem] = useState(initialState)
     const addLogoStyle = {
         width: "40px",
         height: "40px"
     }
     const updateList = (e)=>{
-        if(item.description !== undefined){
+        if(item.description.length !== 0){
             addItem(item)
             document.getElementById("item-description").placeholder = "Enter the note description..."
             document.getElementById("item-description").value = ""
             document.getElementById("item-title").value = ""
-            setItem({"title": undefined, description: undefined, "key": (item.key + 1)})
+            setItem(initialState)
         }
         else{
             document.getElementById("item-description").classList.add("warning")
@@ -26,10 +26,24 @@ function AddItem({addItem}) {
     const clickOnDescription = ()=>{
         document.getElementById("item-description").classList.remove("warning")
     }
+    const handleItemDescriptionChange = (e)=>{
+        const description =  e?.target?.value;
+        setItem(cs=>({
+            ...cs,
+            "description": description
+        }));
+    }
+    const handleItemTitleChange = (e)=>{
+        const title = e?.target?.value;
+        setItem(cs=>({
+            ...cs,
+            "title": title,
+        }));
+    }
     return (
         <div className="addItem-form">
-            <input placeholder="note title" type="text" id="item-title" onChange={ (e) => setItem( {"title": e.target.value, "description": item.description, "key": item.key} ) }/>
-            <textarea placeholder="Enter the note description..." type="text" id="item-description" class="description" onChange={ (e) => setItem( {"title": item.title, "description": e.target.value, "key": item.key} ) } onClick={clickOnDescription}></textarea>
+            <input placeholder="note title" type="text" id="item-title" onChange={handleItemTitleChange}/>
+            <textarea placeholder="Enter the note description..." type="text" id="item-description" className="description" onChange={handleItemDescriptionChange} onClick={clickOnDescription}></textarea>
             <button className="addItem-form-button" onClick={updateList}>
                 <img src={require("../icons/plus.svg")} alt="+" style={addLogoStyle}/>
             </button>
