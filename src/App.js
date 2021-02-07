@@ -18,7 +18,7 @@ function App() {
     .orderBy("timeStamp", "desc")
     .get()
     .then(querySnapshot=>{
-      const fetchedData = querySnapshot?.docs?.map(el=>el?.data());
+      const fetchedData = querySnapshot.docs.map(el=>el.data());
       setList(fetchedData);
       setLoading(false);
     })
@@ -34,8 +34,8 @@ function App() {
       firestore.collection(todosCollectionName)
       .doc(newDocId)
       .set({
-        title: item?.title,
-        description: item?.description,
+        title: item.title,
+        description: item.description,
         key: newDocId,
         timeStamp: firebase.firestore.Timestamp.now()
       })

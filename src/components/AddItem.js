@@ -27,14 +27,14 @@ function AddItem({addItem}) {
         document.getElementById("item-description").classList.remove("warning")
     }
     const handleItemDescriptionChange = (e)=>{
-        const description =  e?.target?.value;
+        const description =  e.target.value;
         setItem(cs=>({
             ...cs,
             "description": description
         }));
     }
     const handleItemTitleChange = (e)=>{
-        const title = e?.target?.value;
+        const title = e.target.value;
         setItem(cs=>({
             ...cs,
             "title": title,

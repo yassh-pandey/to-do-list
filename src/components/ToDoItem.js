@@ -55,10 +55,10 @@ function ToDoItem({deleteItem, item, setList, list}) {
                 <div className="list-item-content">
                 {item.description}
                 </div>  
-                <img src={require("../icons/edit.svg")} onClick={(e) => editClick(e, item?.key)} alt="Edit" style={editLogoStyle}/>
+                <img src={require("../icons/edit.svg")} onClick={(e) => editClick(e, item.key)} alt="Edit" style={editLogoStyle}/>
             </div>
             <button className="remove-item-button" 
-                onClick={(e) => itemDelete(e, item?.key)} 
+                onClick={(e) => itemDelete(e, item.key)} 
                 onMouseOver={()=>mouseOverButton(item.key)} 
                 onMouseOut={()=>mouseOutButton(item.key)} >
                 <img src={require("../icons/cross.svg")} alt="X" style={deleteLogoStyle}/>
